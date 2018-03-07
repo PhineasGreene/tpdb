@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TPDB</title>
+	</head>
+	<body>
+		<h1>TP Data Base</h1>
+		<p>Hello ROC! You search by team name or by case here. See a table of all information <a href="/">here</a>. Change info <a href="change">here</a>.</p>
+
+		<h2>Table</h2>
+		<table id="table">
+			<tr>
+				<th>Team</th>
+				<th>Case</th>
+				<th>Info</th>
+			<tr>
+		</table>
+	</body>
+	<!-- We use JQuery to send get and post requests to our server. -->
+	<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script>
+		//load the table
+		$.get("search", (data)=>{
+			
+		});
+	</script>
+</html>

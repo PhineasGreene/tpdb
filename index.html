@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TPDB</title>
+	</head>
+	<body>
+		<h1>TP Data Base</h1>
+		<p>Hello ROC! You can get all the info about teams and their cases here. You can search by team or by case <a href="search">here</a>. Change info <a href="change">here</a>.</p>
+
+		<h2>Table</h2>
+		<table id="table">
+			<tr>
+				<th>Team</th>
+				<th>Case</th>
+				<th>Info</th>
+			<tr>
+		</table>
+	</body>
+	<!-- We use JQuery to send get and post requests to our server. -->
+	<script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script>
+		//load the table
+		$.get("table", (data)=>{
+			var table=document.getElementById("table");
+
+			var alpha=function(a, b, c){
+				var codes=[a.charCodeAt(c), b.charCodeAt(c)];
+				
+				if(codes[0] == codes[1] && a.charAt(c) !== "" && b.charAt(c) !== ""){
+					return alpha(a, b, c+1);
+				}else{
+					return codes[0]-codes[1];
+				}
+			};
+
+			data.sort(function(a, b){
+				return alpha(a.name, b.name, 0);
+			});
+
+			data.forEach((el)=>{
+				var row=document.createElement("tr");
+
+				var teamtd=document.createElement("td");
+				teamtd.textContent=el.name;
+				row.appendChild(teamtd);
+
+				var casetd=document.createElement("td");
+				casetd.textContent=el.case;
+				row.appendChild(casetd);
+
+				var infotd=document.createElement("td");
+				infotd.textContent=el.info;
+				row.appendChild(infotd);
+
+				table.appendChild(row);
+			});
+		});
+	</script>
+</html>
